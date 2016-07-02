@@ -78,6 +78,11 @@ public class Plattegrond {
                     valsspeler.setPositie(x,y);
                     mapObjects.add(valsspeler);
                 }
+                if (veld.equals("X")) {
+                    Routeveld routeveld = new Routeveld();
+                    routeveld.setPositie(x,y);
+                    mapObjects.add(routeveld);
+                }
             }
         }
     }      

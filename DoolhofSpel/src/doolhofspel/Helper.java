@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
  */
 
 public class Helper extends Tempbezetting {
+    Bord bord;
 
     public Helper() {
         ImageIcon img = new ImageIcon("Pictures//helper.png");
@@ -26,6 +27,8 @@ public class Helper extends Tempbezetting {
     }
 
     public void routeTonen() {
+        Muur muur = new Muur();
+        bord.changeImage(1,1,null, muur);
         // pseudo code kortste route berekenen (staat natuurlijk niet op de goede plek, maar for now
         // het is niet van belang om te beginnen met de kortste route, we gaan de route bereken naar de vriend
         // kijk bij elke stap wat er op je pad zit, dus ook of je meerdere wegen kan inslaan
