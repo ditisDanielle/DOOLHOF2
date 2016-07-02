@@ -240,7 +240,6 @@ public class Bord extends JPanel implements ActionListener {
                     Routeveld routeveld = new Routeveld();
                     ImageIcon img = new ImageIcon("Pictures//route.png");
                     routeveld.setImage(img.getImage());
-                    Gras gras = new Gras();
                     copykaart.add(i, routeveld);
                 }
                 i++;
