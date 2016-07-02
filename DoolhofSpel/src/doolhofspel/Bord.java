@@ -35,6 +35,7 @@ public class Bord extends JPanel implements ActionListener {
         addKeyListener(new PijltjesListener());
         setFocusable(true);
         this.doolhof = doolhof;
+        
         //printPosities(); // print alle veldbezettingen met hun indexnr en x en y
     }
 
