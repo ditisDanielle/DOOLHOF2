@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
  * @author Danielle
  */
 public class Routeveld extends Tempbezetting{
+    Bord bord;
     
     public Routeveld() {
         ImageIcon img = new ImageIcon("Pictures//gras.png");  //("Pictures//route.png")

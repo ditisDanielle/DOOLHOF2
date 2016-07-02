@@ -10,8 +10,8 @@ import javax.swing.ImageIcon;
  *
  * @author Danielle en Agnita (Groep 7)
  */
-
 public class Helper extends Tempbezetting {
+
     Bord bord;
 
     public Helper(Bord bord) {
@@ -19,8 +19,7 @@ public class Helper extends Tempbezetting {
         super.setImage(img.getImage());
         super.setPositie(12, 6);
         //this.bord = bord;
-        System.out.println("bord van helper:"+ bord);
-               
+        //System.out.println("bord van helper:" + bord);
 
     }
 
@@ -32,19 +31,19 @@ public class Helper extends Tempbezetting {
     public int getVeldY() {
         return super.getY(1);
     }
-    
+
     @Override
-    public void setBord(Bord bord){
+    public void setBord(Bord bord) {
         this.bord = bord;
     }
-    
+
     @Override
-    public Bord getBord(){
+    public Bord getBord() {
         return this.bord;
     }
 
     public void routeTonen(Plattegrond kaart) {
-        System.out.println("route tonen");
+        //System.out.println("route tonen");
         ArrayList routelist = kaart.getMapObjects();
         // arraylist elementen aan set toewijzen
         Set<Veldbezetting> routeSet = new HashSet<>();
@@ -59,18 +58,15 @@ public class Helper extends Tempbezetting {
                 //als routeveld, haal x en y
                 int x = A.getX();
                 int y = A.getY();
-                
+
                 Routeveld routeveld = new Routeveld();
-                ImageIcon img = new ImageIcon("Pictures//route.png");
-                routeveld.setImage(img.getImage());
                 Gras gras = new Gras();
 
-                bord.changeImage(x, y, gras, routeveld); 
+                bord.changeImage(x, y, gras, routeveld);
 
             }
             //repaint();
         }
-bord.repaint();
+        bord.repaint();
     }
-    }
-
+}

@@ -74,9 +74,8 @@ class Doolhof implements ActionListener {
         // eindeSpelKnop, niet  zichtbaar tot we onze vriend gevonden hebben
         eindeSpelKnop = new JButton();
         eindeSpelKnop.setFocusable(false);
-        eindeSpelKnop.setBackground(Color.pink);
-        eindeSpelKnop.setVisible(false);
-        eindeSpelKnop.setText("VRIEND GEVONDEN!!!");
+        eindeSpelKnop.setVisible(true);
+        eindeSpelKnop.setText("                                     ");
         
         // Tellerlabel
         tellerlabel = new JButton();
@@ -136,7 +135,10 @@ class Doolhof implements ActionListener {
     }
     
     public void eindeSpelKnop() {
-        eindeSpelKnop.setVisible(true);
+        eindeSpelKnop.setText("VRIEND GEVONDEN!!!");
+        reset.setBackground(Color.pink);
+        eindeSpelKnop.setBackground(Color.pink);
+        
     }
 
     // deze komt mee vanwege implements ActionListener

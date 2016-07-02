@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  */
 
 public class Vriend extends Veldbezetting {
-    // waarden 1 nog vervangen door variabelenaam
+    Bord bord;
     public Vriend(){
         ImageIcon img = new ImageIcon("Pictures//vriend.png");
         super.setImage(img.getImage());

@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
  */
 
 public class Valsspeler extends Tempbezetting {
+    Bord bord;
     public Valsspeler(){
         // waarden 1 nog vervangen door variabelenaam
         ImageIcon img = new ImageIcon("Pictures//valsspeler.png");
@@ -22,5 +23,6 @@ public class Valsspeler extends Tempbezetting {
     public int getVeldY(){
         return super.getY(1);
     }
+    
     
 }

@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  */
 
 public class Gras extends Veldbezetting {
-    // waarden 1 nog vervangen door variabelenaam
+    Bord bord;
     public Gras() {
         ImageIcon img = new ImageIcon("Pictures//gras.png");
         super.setImage(img.getImage());
