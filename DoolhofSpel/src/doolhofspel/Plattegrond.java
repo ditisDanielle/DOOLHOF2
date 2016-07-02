@@ -15,8 +15,10 @@ public class Plattegrond {
     private Scanner file;
     private final int MAPGROOTTE = 21;
     public ArrayList<Veldbezetting> mapObjects = new ArrayList<>();
+    Bord bord;
     
-    public Plattegrond() {
+    public Plattegrond(Bord bord) {
+        this.bord = bord;
         ImageIcon img;
         img = new ImageIcon("Pictures//start.png");
         openFile();
@@ -69,7 +71,7 @@ public class Plattegrond {
                     mapObjects.add(vriend);
                 }        
                 if (veld.equals("h")) {
-                    Helper helper = new Helper();
+                    Helper helper = new Helper(bord);
                     helper.setPositie(x,y);
                     mapObjects.add(helper);
                 }

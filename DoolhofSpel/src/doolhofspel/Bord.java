@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -30,20 +31,46 @@ public class Bord extends JPanel implements ActionListener {
     private int stapX;
     private int stapY;
     Doolhof doolhof;
+    private ArrayList<Veldbezetting> veldbezetters;
+    private String naam;
+    private Muur muur;
 
     public Bord(Doolhof doolhof) {
-        kaart = new Plattegrond();
+        naam = "ik ben het bord";
+        veldbezetters = new ArrayList<>();
+        kaart = new Plattegrond(this);
         held = new Held();
+        veldbezetters.add(held);
         valsspeler = new Valsspeler();
+        veldbezetters.add(valsspeler);
         bazooka = new Bazooka();
+        veldbezetters.add(bazooka);
         vriend = new Vriend();
-        helper = new Helper();
+        veldbezetters.add(vriend);
+        helper = new Helper(this);
+        veldbezetters.add(helper);
+        muur = new Muur();
+        
         routeveld = new Routeveld();
         addKeyListener(new PijltjesListener());
         setFocusable(true);
         this.doolhof = doolhof;
+        setBordVeldbezetting();
+        
         
         //printPosities(); // print alle veldbezettingen met hun indexnr en x en y
+    }
+    
+    @Override
+    public String toString(){
+        return naam;
+    }
+    
+    public void setBordVeldbezetting(){
+       helper.setBord(this); 
+       System.out.println("Bord bord:" +this);
+       muur.setBord(this);
+       
     }
 
     @Override
@@ -140,6 +167,8 @@ public class Bord extends JPanel implements ActionListener {
             }
             if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Helper) {
                 System.out.println("Helper!!");
+                helper.routeTonen(kaart);
+                //repaint();
                 int helperX = held.getVeldX() + stapX;
                 int helperY = held.getVeldY() + stapY;
                 Gras gras = new Gras();
@@ -191,9 +220,12 @@ public class Bord extends JPanel implements ActionListener {
                     copykaart.add(i, gras);
                 //}else if (veldNieuw instanceof RouteVeld) {
                 }else{ 
-                   System.out.println( veldOud +" wordt" + veldNieuw);
+                   System.out.println( veldOud +" wordt " + veldNieuw);
                     copykaart.remove(i);
                     Routeveld routeveld = new Routeveld();
+                ImageIcon img = new ImageIcon("Pictures//route.png");
+                routeveld.setImage(img.getImage());
+                Gras gras = new Gras();
                     copykaart.add(i, routeveld);
                 }
                 i++;                

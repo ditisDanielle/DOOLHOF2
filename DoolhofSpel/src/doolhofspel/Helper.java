@@ -1,5 +1,9 @@
 package doolhofspel;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import javax.swing.ImageIcon;
 
 /**
@@ -10,10 +14,13 @@ import javax.swing.ImageIcon;
 public class Helper extends Tempbezetting {
     Bord bord;
 
-    public Helper() {
+    public Helper(Bord bord) {
         ImageIcon img = new ImageIcon("Pictures//helper.png");
         super.setImage(img.getImage());
         super.setPositie(12, 6);
+        //this.bord = bord;
+        System.out.println("bord van helper:"+ bord);
+               
 
     }
 
@@ -25,18 +32,45 @@ public class Helper extends Tempbezetting {
     public int getVeldY() {
         return super.getY(1);
     }
-
-    public void routeTonen() {
-        Muur muur = new Muur();
-        bord.changeImage(1,1,null, muur);
-        // pseudo code kortste route berekenen (staat natuurlijk niet op de goede plek, maar for now
-        // het is niet van belang om te beginnen met de kortste route, we gaan de route bereken naar de vriend
-        // kijk bij elke stap wat er op je pad zit, dus ook of je meerdere wegen kan inslaan
-        // bij het kunnen inslaan van meerdere wegen, sla je op waar dat was (kruispunt)
-        // kom je bij een doodlopende route, dan terug naar het kruispunt, en de andere route gaan lopen
-        // zodra je de vriend gevonden hebt is dat de kortste route, en die sla je op
-        // indien mogelijk ga je terug naar het laatste kruispunt, waar je minimaal twee mogelijke routes had
-        // repeat, en overschrijf de kortste route telkens als die korter is dan de opgeslagen route
-        // geen kruispunten meer, dan heb je de kortste route, die kun je dan "tekenen"
+    
+    @Override
+    public void setBord(Bord bord){
+        this.bord = bord;
     }
-}
+    
+    @Override
+    public Bord getBord(){
+        return this.bord;
+    }
+
+    public void routeTonen(Plattegrond kaart) {
+        System.out.println("route tonen");
+        ArrayList routelist = kaart.getMapObjects();
+        // arraylist elementen aan set toewijzen
+        Set<Veldbezetting> routeSet = new HashSet<>();
+        for (Object veld : routelist) {
+            routeSet.add((Veldbezetting) veld);
+        }
+        //set doorlopen
+        Iterator<Veldbezetting> iter = routeSet.iterator();
+        while (iter.hasNext()) {
+            Veldbezetting A = iter.next();
+            if (A instanceof Routeveld) {
+                //als routeveld, haal x en y
+                int x = A.getX();
+                int y = A.getY();
+                
+                Routeveld routeveld = new Routeveld();
+                ImageIcon img = new ImageIcon("Pictures//route.png");
+                routeveld.setImage(img.getImage());
+                Gras gras = new Gras();
+
+                bord.changeImage(x, y, gras, routeveld); 
+
+            }
+            //repaint();
+        }
+bord.repaint();
+    }
+    }
+

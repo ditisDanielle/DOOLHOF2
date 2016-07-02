@@ -10,6 +10,7 @@ import java.awt.Image;
 public abstract class Veldbezetting {
     private Image afbeelding;
     private int veldX, veldY;
+    private Bord bord;
     
     public void setImage(Image afbeelding){
       this.afbeelding = afbeelding;
@@ -40,4 +41,11 @@ public abstract class Veldbezetting {
         return this.veldY;
     }
     
+    public void setBord(Bord bord){
+        this.bord = bord;
+    }
+    
+    public Bord getBord(){
+        return this.bord;
+    }
 }

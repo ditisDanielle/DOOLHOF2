@@ -7,7 +7,8 @@ import javax.swing.ImageIcon;
  * @author Agnita & Danielle (Groep 7)
  */
 
-    public class Muur extends Tempbezetting {       
+    public class Muur extends Tempbezetting { 
+        Bord bord;
         public Muur() {
         ImageIcon img = new ImageIcon("Pictures//brickwall.png");
         super.setImage(img.getImage());
