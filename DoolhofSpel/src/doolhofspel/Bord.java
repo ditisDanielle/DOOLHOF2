@@ -35,6 +35,7 @@ public class Bord extends JPanel implements ActionListener {
     private String naam;
     private Muur muur;
     private Gras gras;
+    private Checkveld checkveld;
 
     public Bord(Doolhof doolhof) {
         naam = "ik ben het bord";
@@ -50,6 +51,7 @@ public class Bord extends JPanel implements ActionListener {
         veldbezetters.add(vriend);
         helper = new Helper(this);
         veldbezetters.add(helper);
+        checkveld = new Checkveld();
         muur = new Muur();
         gras = new Gras();
 
@@ -179,13 +181,20 @@ public class Bord extends JPanel implements ActionListener {
                 changeImage(helperX, helperY, helper, gras);
                 
             }
+            
+            if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Checkveld) {
+                int checkveldX = held.getVeldX() + stapX;
+                int checkVeldY = held.getVeldY() + stapY;
+                helper.routeSchonen(kaart);
+                
+            }
             if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Valsspeler) {
                 //System.out.println("VALSSPELER!!");
                 stappenteller = stappenteller - 20;
-                int helperX = held.getVeldX() + stapX;
-                int helperY = held.getVeldY() + stapY;
+                int valsspelerX = held.getVeldX() + stapX;
+                int valsspelerY = held.getVeldY() + stapY;
                 Gras gras = new Gras();
-                changeImage(helperX, helperY, valsspeler, gras);
+                changeImage(valsspelerX, valsspelerY, valsspeler, gras);
             }
             if (!(kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Muur)) {
                 held.lopen(stapX, stapY);
@@ -218,12 +227,14 @@ public class Bord extends JPanel implements ActionListener {
             if (x == X && y == Y) {
                 //copykaart.remove(i);
                 if (!(veldNieuw instanceof Routeveld)) {
-                    System.out.println(veldOud + " wordt " + veldNieuw);
+                    //System.out.println(veldOud + " wordt " + veldNieuw);
                     copykaart.remove(i);
                     Gras gras = new Gras();
+                    ImageIcon img = new ImageIcon("Pictures//gras.png");
+                    gras.setImage(img.getImage());
                     copykaart.add(i, gras);
                 } else { // if veldNieuw instance of Routeveld
-                    System.out.println(veldOud + " wordt " + veldNieuw);
+                    //System.out.println(veldOud + " wordt " + veldNieuw);
                     copykaart.remove(i);
                     
                     Routeveld routeveld = new Routeveld();

@@ -85,6 +85,12 @@ public class Plattegrond {
                     routeveld.setPositie(x,y);
                     mapObjects.add(routeveld);
                 }
+                // veld wat geplaatst wordt om de helper, zodat de getoonde route ook weer verdwijnt
+                if (veld.equals("C")) { 
+                    Checkveld checkveld = new Checkveld();
+                    checkveld.setPositie(x,y);
+                    mapObjects.add(checkveld);
+                }
             }
         }
     }      
