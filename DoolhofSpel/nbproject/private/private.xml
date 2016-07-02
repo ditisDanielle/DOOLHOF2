@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Helper.java</file>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Plattegrond.java</file>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Bord.java</file>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Bazooka.java</file>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Gras.java</file>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Valsspeler.java</file>
-            <file>file:/C:/Data/Studie/Blok4/DOOLHOF-master/DoolhofSpel/src/doolhofspel/Held.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Routeveld.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Valsspeler.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Muur.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Gras.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Held.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Tempbezetting.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Bord.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Doolhof.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Plattegrond.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Helper.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Checkveld.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Veldbezetting.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/DoolhofSpel.java</file>
+            <file>file:/C:/Users/Danielle/Documents/DOOLHOF2/DoolhofSpel/src/doolhofspel/Vriend.java</file>
         </group>
     </open-files>
 </project-private>

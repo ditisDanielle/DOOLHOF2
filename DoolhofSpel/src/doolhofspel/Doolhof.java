@@ -155,6 +155,7 @@ class Doolhof implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             //System.out.println("resetlistener geactiveerd");
+            spelframe.dispose();
             Doolhof doolhof = new Doolhof();
             gamepanel.add(new Bord(doolhof));
         }

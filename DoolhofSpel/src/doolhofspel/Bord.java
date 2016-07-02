@@ -233,7 +233,7 @@ public class Bord extends JPanel implements ActionListener {
                     ImageIcon img = new ImageIcon("Pictures//gras.png");
                     gras.setImage(img.getImage());
                     copykaart.add(i, gras);
-                } else { // if veldNieuw instance of Routeveld
+                } else{ //veldNieuw instanceof Routeveld 
                     //System.out.println(veldOud + " wordt " + veldNieuw);
                     copykaart.remove(i);
                     
