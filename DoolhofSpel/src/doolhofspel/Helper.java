@@ -63,7 +63,7 @@ public class Helper extends Tempbezetting {
                 Routeveld routeveld = new Routeveld();
                 Gras gras = new Gras();
 
-                bord.changeImage(x, y, gras, routeveld);
+                bord.changeImage(x, y, routeveld);
 
             }
             //repaint();
@@ -96,7 +96,7 @@ public class Helper extends Tempbezetting {
                 Routeveld routeveld = new Routeveld();
                 Gras gras = new Gras();
 
-                bord.changeImage(x, y, routeveld, gras);
+                bord.changeImage(x, y, gras);
 
             }
             //repaint();

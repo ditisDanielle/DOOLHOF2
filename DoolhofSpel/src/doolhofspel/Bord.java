@@ -6,9 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -168,7 +165,7 @@ public class Bord extends JPanel implements ActionListener {
                 int bazookaX = held.getVeldX() + stapX;
                 int bazookaY = held.getVeldY() + stapY;
                 Gras gras = new Gras();
-                changeImage(bazookaX, bazookaY, bazooka, gras);
+                changeImage(bazookaX, bazookaY, gras);
             }
 
             if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Checkveld) {
@@ -182,7 +179,7 @@ public class Bord extends JPanel implements ActionListener {
                 int helperX = held.getVeldX() + stapX;
                 int helperY = held.getVeldY() + stapY;
                 Gras gras = new Gras();
-                changeImage(helperX, helperY, helper, gras);
+                changeImage(helperX, helperY, gras);
                 helper.routeTonen(kaart);
 
             }
@@ -193,7 +190,7 @@ public class Bord extends JPanel implements ActionListener {
                 int valsspelerX = held.getVeldX() + stapX;
                 int valsspelerY = held.getVeldY() + stapY;
                 Gras gras = new Gras();
-                changeImage(valsspelerX, valsspelerY, valsspeler, gras);
+                changeImage(valsspelerX, valsspelerY, gras);
             }
             if (!(kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Muur)) {
                 held.lopen(stapX, stapY);
@@ -215,7 +212,7 @@ public class Bord extends JPanel implements ActionListener {
         }
     }
 
-    public void changeImage(int X, int Y, Veldbezetting veldOud, Veldbezetting veldNieuw) {
+    public void changeImage(int X, int Y, Veldbezetting veldNieuw) {
         int i = 0;
         while (i < kaart.mapObjects.size()) {
             Veldbezetting V = kaart.mapObjects.get(i);
@@ -225,14 +222,6 @@ public class Bord extends JPanel implements ActionListener {
 
             // zoek veldbezetting met X en Y
             if (x == X && y == Y) {
-                // als  nieuwe veld route moet worden
-                if (veldNieuw instanceof Routeveld) {
-                    // als V een routeveld is, vervang afbeelding
-                    if (V instanceof Routeveld) {
-                        ImageIcon img = new ImageIcon("Pictures//gras.png");
-                        V.setImage(img.getImage());
-                    }
-                }
                 // als nieuwe veld gras moet worden
                 if (veldNieuw instanceof Gras) {
                     // vervang Veldbezetting als muur, valsspeler, helper of bazooka
@@ -293,7 +282,7 @@ public class Bord extends JPanel implements ActionListener {
                     if ((kaart.getMap(held.getSchietTargetX(), held.getSchietTargetY()) instanceof Muur)) {
                         Gras gras = new Gras();
                         Muur muur = new Muur();
-                        changeImage(held.getSchietTargetX(), held.getSchietTargetY(), muur, gras);
+                        changeImage(held.getSchietTargetX(), held.getSchietTargetY(), gras);
                         return;
                     }
                     //als target veld != muur, check volgende veld
@@ -318,7 +307,7 @@ public class Bord extends JPanel implements ActionListener {
                     }
                     Gras gras = new Gras();
                     Muur muur = new Muur();
-                    changeImage(held.getSchietTargetX(), held.getSchietTargetY(), muur, gras);
+                    changeImage(held.getSchietTargetX(), held.getSchietTargetY(), gras);
                 }
             }
         }
