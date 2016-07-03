@@ -2,12 +2,9 @@ package doolhofspel;
 
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -15,44 +12,114 @@ import static org.junit.Assert.*;
  */
 public class BordTest {
     
-    public BordTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    Bord bord;
+    Held held;
+    Doolhof doolhof;
+    Plattegrond kaart;
+    Veldbezetting veldbezetting;
     
     @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+    public void setUp(){
+        doolhof = new Doolhof();
+        bord = new Bord(doolhof);
+        held = new Held(bord);
+        kaart = new Plattegrond(bord);
+        
+        
+        
     }
 
-     @Test
-    public void setTellerTest() {
-        System.out.println("Teller test");
-        Doolhof doolhof = new Doolhof();
-        int aantal = 0;
-        int result;
-        String simulatedUserInput = "KeyEvent.VK_UP";
-        Scanner in = new Scanner(new ByteArrayInputStream(simulatedUserInput.getBytes()));
-        if (in.hasNext(simulatedUserInput)) {
-            aantal = 1;
-        }
-        else {
-            aantal = 0;
-        }
-        doolhof.setTeller(aantal);
-        result = aantal;
-        int expResult = 1;
-        assertEquals(expResult, result);
-        System.out.println("Het resultaat is " + result + " en het verwachtte resultaat is " + expResult);
-    }
     
+    
+    @Test
+    public void changeImage1() {
+        
+        System.out.println("\n\nTEST changeImage(int X, int Y, Veldbezetting nieuwVeld");
+        System.out.println("Testgeval 1");
+    int X = 1;
+    int Y = 6;
+        System.out.println("Positie oude veldbezetting (x,y) = " + X +","+ Y);
+    
+     // 1,3 is een Muur - index in ArrayList mapObjects voor deze positie = 36
+    Veldbezetting veldNieuw = new Gras();
+    int pos = 36;
+        System.out.println("Bijbehorende index in ArrayList mapObjects (veldbezettingen) = " + pos);
+    
+    Veldbezetting oud = kaart.mapObjects.get(pos);
+        System.out.println("Oude veldbezetting = " + oud);
+    Veldbezetting expResult = veldNieuw;
+    kaart.mapObjects.remove(pos);
+    kaart.mapObjects.add(pos, veldNieuw);
+        System.out.println("Nieuwe veldbezetting = " + veldNieuw);
+    Veldbezetting nieuw = kaart.mapObjects.get(pos);    
+    
+         
+        Veldbezetting result = nieuw;
+        assertEquals(expResult, result);
+        System.out.println("Verwacht resultaat: "+  expResult + "\nWerkelijk resultaat: " + result);
+
 }
+    
+    @Test
+    public void changeImage2() {
+        
+        System.out.println("\n\nTEST changeImage(int X, int Y, Veldbezetting nieuwVeld");
+        System.out.println("Testgeval 2");
+    int X = 2;
+    int Y = 16;
+        System.out.println("Positie oude veldbezetting (x,y) = " + X +","+ Y);
+    
+     // 2,16 is een Gras - index in ArrayList mapObjects voor deze positie = 58
+    Veldbezetting veldNieuw = new Gras();
+    int pos = 58;
+        System.out.println("Bijbehorende index in ArrayList mapObjects (veldbezettingen) = " + pos);
+    
+    Veldbezetting oud = kaart.mapObjects.get(pos);
+        System.out.println("Oude veldbezetting = " + oud);
+    Veldbezetting expResult = veldNieuw;
+    kaart.mapObjects.remove(pos);
+    kaart.mapObjects.add(pos, veldNieuw);
+        System.out.println("Nieuwe veldbezetting = " + veldNieuw);
+    Veldbezetting nieuw = kaart.mapObjects.get(pos);    
+    
+         
+        Veldbezetting result = nieuw;
+        assertEquals(expResult, result);
+        System.out.println("Verwacht resultaat: "+  expResult + "\nWerkelijk resultaat: " + result);
+
+}
+    @Test
+    public void changeImage3() {
+        
+        System.out.println("\n\nTEST changeImage(int X, int Y, Veldbezetting nieuwVeld");
+        System.out.println("Testgeval 3");
+    int X = 8;
+    int Y = 14;
+        System.out.println("Positie oude veldbezetting (x,y) = " + X +","+ Y);
+    
+     // 2,16 is een Routeveld - index in ArrayList mapObjects voor deze positie = 182
+    Veldbezetting veldNieuw = new Routeveld();
+    int pos = 182;
+        System.out.println("Bijbehorende index in ArrayList mapObjects (veldbezettingen) = " + pos);
+    
+    Veldbezetting oud = kaart.mapObjects.get(pos);
+        System.out.println("Oude veldbezetting = " + oud);
+    Veldbezetting expResult = veldNieuw;
+    kaart.mapObjects.remove(pos);
+    kaart.mapObjects.add(pos, veldNieuw);
+        System.out.println("Nieuwe veldbezetting = " + veldNieuw);
+    Veldbezetting nieuw = kaart.mapObjects.get(pos);    
+    
+         
+        Veldbezetting result = nieuw;
+        assertEquals(expResult, result);
+        System.out.println("Verwacht resultaat: "+  expResult + "\nWerkelijk resultaat: " + result);
+
+}
+}
+
+
+
+
+
+

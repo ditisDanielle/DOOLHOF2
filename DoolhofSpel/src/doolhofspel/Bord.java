@@ -38,7 +38,7 @@ public class Bord extends JPanel implements ActionListener {
         naam = "ik ben het bord";
         veldbezetters = new ArrayList<>();
         kaart = new Plattegrond(this);
-        held = new Held();
+        held = new Held(this);
         veldbezetters.add(held);
         valsspeler = new Valsspeler();
         veldbezetters.add(valsspeler);
@@ -60,6 +60,12 @@ public class Bord extends JPanel implements ActionListener {
 
         //printPosities(); // print alle veldbezettingen met hun indexnr en x en y
     }
+    
+    public Held getHeld(){
+        
+        return this.held;
+    }
+    
 
     @Override
     public String toString() {
@@ -274,43 +280,44 @@ public class Bord extends JPanel implements ActionListener {
     public void activeerSchietActie(int tempX, int tempY) {
         // vermijden dat we bij wijze van spreken van het bord af schieten en daardoor
         // een IndexOutOfBoundsException veroorzaken
+        Veldbezetting veldbezetting = kaart.getMap(held.getSchietTargetX(), held.getSchietTargetY());
+        String richting = held.getRichting();
         if (tempX < 21 || tempX < 21) {
             if (tempX >= 0) {
                 if (tempY >= 0) {
                     // ophalen target
                     held.schieten(tempX, tempY);
-                    if ((kaart.getMap(held.getSchietTargetX(), held.getSchietTargetY()) instanceof Muur)) {
+                    if ((veldbezetting instanceof Muur)) {
                         Gras gras = new Gras();
-                        Muur muur = new Muur();
                         changeImage(held.getSchietTargetX(), held.getSchietTargetY(), gras);
                         return;
                     }
                     //als target veld != muur, check volgende veld
-                    if (!(kaart.getMap(held.getSchietTargetX(), held.getSchietTargetY()) instanceof Muur)) {
-                        if (held.getRichting().equals("right")) {
+                    if (!(veldbezetting instanceof Muur)) {
+                        if (richting.equals("right")) {
                             tempX++;
                             held.schieten(tempX, tempY);
                         }
-                        if (held.getRichting().equals("left")) {
+                        if (richting.equals("left")) {
                             tempX--;
                             held.schieten(tempX, tempY);
                         }
-                        if (held.getRichting().equals("up")) {
+                        if (richting.equals("up")) {
                             tempY--;
                             held.schieten(tempX, tempY);
                         }
-                        if (held.getRichting().equals("down")) {
+                        if (richting.equals("down")) {
                             tempY++;
                             held.schieten(tempX, tempY);
                         }
                         activeerSchietActie(tempX, tempY);
                     }
                     Gras gras = new Gras();
-                    Muur muur = new Muur();
                     changeImage(held.getSchietTargetX(), held.getSchietTargetY(), gras);
                 }
             }
         }
+        
     }
 
     public void eindeSpelKnop() {

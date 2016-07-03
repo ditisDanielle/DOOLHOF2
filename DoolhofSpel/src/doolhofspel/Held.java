@@ -12,12 +12,14 @@ public class Held extends Veldbezetting{
     String looprichting;
     int schietTargetX;
     int schietTargetY;
+    Bord bord;
     
-    public Held(){
+    public Held(Bord bord){
         ImageIcon img = new ImageIcon("Pictures//held.png");
         super.setImage(img.getImage());
         super.setPositie(1,1);
         bazookaJN = false;
+        this.bord = bord;
     }
     
     public void setRichting(String richting){
@@ -59,8 +61,12 @@ public class Held extends Veldbezetting{
     }
     
     public void schieten(int X,int Y){
+        
+        
         schietTargetX = X;
         schietTargetY = Y;
+        
+       
     }
     
     public void bazookaPakken(){
