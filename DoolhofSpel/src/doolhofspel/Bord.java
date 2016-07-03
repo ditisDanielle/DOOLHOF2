@@ -163,7 +163,6 @@ public class Bord extends JPanel implements ActionListener {
                 eindeSpelKnop();
             }
             if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Bazooka) {
-                //System.out.println("Found bazooka!");
                 activeerSchietknop();
                 held.bazookaPakken();
                 int bazookaX = held.getVeldX() + stapX;
@@ -171,23 +170,23 @@ public class Bord extends JPanel implements ActionListener {
                 Gras gras = new Gras();
                 changeImage(bazookaX, bazookaY, bazooka, gras);
             }
-            if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Helper) {
-                //System.out.println("Helper!!");
-                helper.routeTonen(kaart);
-                //repaint();
-                int helperX = held.getVeldX() + stapX;
-                int helperY = held.getVeldY() + stapY;
-                Gras gras = new Gras();
-                changeImage(helperX, helperY, helper, gras);
-                
-            }
-            
+
             if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Checkveld) {
                 int checkveldX = held.getVeldX() + stapX;
                 int checkVeldY = held.getVeldY() + stapY;
                 helper.routeSchonen(kaart);
-                
+
             }
+            if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Helper) {
+                //helper.routeTonen(kaart);
+                int helperX = held.getVeldX() + stapX;
+                int helperY = held.getVeldY() + stapY;
+                Gras gras = new Gras();
+                changeImage(helperX, helperY, helper, gras);
+                helper.routeTonen(kaart);
+
+            }
+
             if (kaart.getMap(held.getVeldX() + stapX, held.getVeldY() + stapY) instanceof Valsspeler) {
                 //System.out.println("VALSSPELER!!");
                 stappenteller = stappenteller - 20;
@@ -201,7 +200,7 @@ public class Bord extends JPanel implements ActionListener {
                 telStap();
             }
         }
-          
+
     }
 
     /*
@@ -217,38 +216,53 @@ public class Bord extends JPanel implements ActionListener {
     }
 
     public void changeImage(int X, int Y, Veldbezetting veldOud, Veldbezetting veldNieuw) {
-        ArrayList copykaart = kaart.getMapObjects();
         int i = 0;
-        while (i < copykaart.size()) {
+        while (i < kaart.mapObjects.size()) {
             Veldbezetting V = kaart.mapObjects.get(i);
 
             int x = V.getX(i);
             int y = V.getY(i);
+
+            // zoek veldbezetting met X en Y
             if (x == X && y == Y) {
-                //copykaart.remove(i);
-                if (!(veldNieuw instanceof Routeveld)) {
-                    //System.out.println(veldOud + " wordt " + veldNieuw);
-                    copykaart.remove(i);
-                    Gras gras = new Gras();
-                    ImageIcon img = new ImageIcon("Pictures//gras.png");
-                    gras.setImage(img.getImage());
-                    copykaart.add(i, gras);
-                } else{ //veldNieuw instanceof Routeveld 
-                    //System.out.println(veldOud + " wordt " + veldNieuw);
-                    copykaart.remove(i);
-                    
-                    Routeveld routeveld = new Routeveld();
-                    ImageIcon img = new ImageIcon("Pictures//route.png");
-                    routeveld.setImage(img.getImage());
-                    copykaart.add(i, routeveld);
+                // als  nieuwe veld route moet worden
+                if (veldNieuw instanceof Routeveld) {
+                    // als V een routeveld is, vervang afbeelding
+                    if (V instanceof Routeveld) {
+                        ImageIcon img = new ImageIcon("Pictures//gras.png");
+                        V.setImage(img.getImage());
+                    }
                 }
-                i++;
-            } else {
-                i++;
+                // als nieuwe veld gras moet worden
+                if (veldNieuw instanceof Gras) {
+                    // vervang Veldbezetting als muur, valsspeler, helper of bazooka
+                    if ((V instanceof Muur) || (V instanceof Valsspeler) || (V instanceof Helper) || (V instanceof Bazooka)) {
+                        kaart.mapObjects.remove(i);
+                        Gras gras = new Gras();
+                        kaart.mapObjects.add(i, gras);
+                    }
+                    // vervang afbeelding van route door gras als routeveld
+                    if (V instanceof Routeveld) {
+
+                        ImageIcon img = new ImageIcon("Pictures//gras.png");
+                        V.setImage(img.getImage());
+                    }
+                }
+                
+                // als nieuwe veld routeveld moet worden
+                if (veldNieuw instanceof Routeveld) {
+                    // vervang afbeelding door route als het een routeveld is
+                    if (V instanceof Routeveld) {
+                        ImageIcon img = new ImageIcon("Pictures//route.png");
+                        V.setImage(img.getImage());
+                    }
+                }
+
             }
+            i++; // einde if x=x en y=y 
         }
-        repaint();
-    }
+        repaint();//einde while
+    }//einde changeImage
 
     public void activeerSchietknop() {
         doolhof.switchVisibilitySchietknop(true);
@@ -334,54 +348,3 @@ public class Bord extends JPanel implements ActionListener {
     }
 
 }
-
-
-//    public void routeVerdwijnen(){
-//        
-//        System.out.println("route verdijnen");
-//        ArrayList routelist = routeKaart.getRouteObjects();
-//        // arraylist elementen aan set toewijzen
-//        Set<Veldbezetting> routeSet = new HashSet<>();
-//        for (Object veld : routelist) {
-//            routeSet.add((Veldbezetting) veld);
-//        }
-//        //set doorlopen
-//        Iterator<Veldbezetting> iter = routeSet.iterator();
-//        while (iter.hasNext()) {
-//            Veldbezetting A = iter.next();
-//            if (A instanceof RouteVeld) {
-//                //als routeveld, haal x en y
-//                int x = A.getX();
-//                int y = A.getY();
-//                
-//                RouteVeld routeveld = new RouteVeld();
-//                Gras gras = new Gras();
-//
-//                changeImage(x, y, routeveld, gras); 
-//
-//            }
-//        }
-//
-//public void changeImage(int X, int Y) {
-//        ArrayList copykaart = kaart.getMapObjects();
-//        int i = 0;
-//        while (i < copykaart.size()) {
-//            Veldbezetting A = kaart.mapObjects.get(i);
-//            int x = A.getX(i);
-//            int y = A.getY(i);
-//            if (x == X && y == Y) {
-////                System.out.println("positie in arraylist copykaart " + (i));
-////                System.out.println("old image : " + copykaart.get(i));
-//                copykaart.remove(i);
-//                Gras gras = new Gras();
-//                copykaart.add(i, gras);
-////                System.out.println("positie in arraylist copykaart " + (i));
-////                System.out.println("new image :" + copykaart.get(i));
-//            } else {
-//                i++;
-//            }
-//        }
-//        repaint();
-//    }
-//
-////

@@ -73,11 +73,11 @@ public class Helper extends Tempbezetting {
     }
 
     void routeSchonen(Plattegrond kaart) {
-        if (routeGetoond == false){
-            System.out.println(routeGetoond);
+        if (!(routeGetoond)){
+            System.out.println("nog geen route getoond");
             return;
         }else{
- //System.out.println("route tonen");
+ System.out.println("route wissen");
         ArrayList routelist = kaart.getMapObjects();
         // arraylist elementen aan set toewijzen
         Set<Veldbezetting> routeSet = new HashSet<>();
