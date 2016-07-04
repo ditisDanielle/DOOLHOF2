@@ -48,7 +48,7 @@ public class Plattegrond {
         for (int x = 0; x < MAPGROOTTE; x++) {
             String line = file.next();
             for (int y = 0; y < MAPGROOTTE; y++) {
-                String veld = line.substring(y,y+1);
+                    String veld = line.substring(y,y+1);
                 if (veld.equals("g")) {
                     Gras gras = new Gras();
                     gras.setPositie(x,y);
@@ -101,4 +101,6 @@ public class Plattegrond {
     public void closeFile() {
         file.close();
     }
+
+    
 }

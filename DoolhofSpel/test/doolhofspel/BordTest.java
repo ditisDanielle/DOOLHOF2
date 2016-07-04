@@ -116,6 +116,19 @@ public class BordTest {
         System.out.println("Verwacht resultaat: "+  expResult + "\nWerkelijk resultaat: " + result);
 
 }
+    
+        @Test
+        public void TesttelStap1() {
+        int stappenteller = 10;
+        System.out.println("Teller test");
+        Doolhof doolhof = new Doolhof();
+        doolhof.setTeller(stappenteller);
+        int result = stappenteller;
+        int expResult = 10;
+        assertEquals(expResult, result);
+        System.out.println("Het resultaat is " + result + " en het verwachte resultaat is " + expResult + ".");
+    }
+        
 }
 
 

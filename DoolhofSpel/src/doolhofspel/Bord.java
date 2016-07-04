@@ -282,7 +282,8 @@ public class Bord extends JPanel implements ActionListener {
         // een IndexOutOfBoundsException veroorzaken
         Veldbezetting veldbezetting = kaart.getMap(held.getSchietTargetX(), held.getSchietTargetY());
         String richting = held.getRichting();
-        if (tempX < 21 || tempX < 21) {
+        int mapgrootte = kaart.getMapgrootte();
+        if (tempX < mapgrootte || tempX < mapgrootte) {
             if (tempX >= 0) {
                 if (tempY >= 0) {
                     // ophalen target

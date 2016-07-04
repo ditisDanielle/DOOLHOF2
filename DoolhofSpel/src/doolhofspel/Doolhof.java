@@ -127,9 +127,11 @@ class Doolhof implements ActionListener {
     }
 
     public void switchVisibilitySchietknop(boolean b) {
-        if (b == true) {
+        if (b) {
+            System.out.println("als true: "+ b);
             schietKnop.setVisible(true);
-        } else if (b == false) {
+        } else if (!(b)) {
+            System.out.println(b);
             schietKnop.setVisible(true);
         }
     }
